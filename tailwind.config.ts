@@ -52,6 +52,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Farewell theme colors
+				'sky-blue': 'hsl(var(--sky-blue))',
+				'soft-blue': 'hsl(var(--soft-blue))',
+				'warm-white': 'hsl(var(--warm-white))',
+				'gentle-gray': 'hsl(var(--gentle-gray))',
+				'paper-plane': 'hsl(var(--paper-plane))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
