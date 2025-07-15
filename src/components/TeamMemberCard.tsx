@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { PaperPlane } from "./PaperPlane";
-import { AnimatedCharacter } from "./AnimatedCharacter";
+import { Character3D } from "./Character3D";
+import { InteractiveCard3D } from "./InteractiveCard3D";
 import { Heart } from "lucide-react";
 
 interface TeamMemberCardProps {
@@ -47,10 +48,7 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Card 
-          className={`cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm border border-primary/20 group ${getCardTheme()}`}
-          onClick={handleCardClick}
-        >
+        <InteractiveCard3D name={name} onClick={handleCardClick}>
           <CardContent className="p-6 text-center relative overflow-hidden">
             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <PaperPlane size={16} />
@@ -63,13 +61,13 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
             <h3 className="text-lg font-semibold text-foreground mb-2">{name}</h3>
             <p className="text-sm text-muted-foreground">Click to read your message</p>
           </CardContent>
-        </Card>
+        </InteractiveCard3D>
       </DialogTrigger>
       
       <DialogContent className="max-w-2xl mx-auto bg-gradient-to-br from-soft-white to-gentle-lavender/20 border border-primary/20 shadow-xl">
         <div className="text-center p-6">
           {showAnimation && (
-            <AnimatedCharacter name={name} onAnimationComplete={handleAnimationComplete} />
+            <Character3D name={name} onComplete={handleAnimationComplete} />
           )}
           
           {showMessage && (

@@ -1,5 +1,6 @@
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { Scene3DBackground } from "@/components/Scene3DBackground";
 
 const teamMembers = [
   {
@@ -30,127 +31,129 @@ const teamMembers = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-soft-white via-blush-pink/20 to-sky-blue/30 relative overflow-hidden">
-      {/* Floating background paper planes */}
-      <FloatingPaperPlane 
-        className="top-20 left-10" 
-        size={20} 
-        animationClass="float-gentle"
-      />
-      <FloatingPaperPlane 
-        className="top-32 right-20" 
-        size={16} 
-        animationClass="float-gentle-delayed"
-      />
-      <FloatingPaperPlane 
-        className="top-60 left-1/4" 
-        size={18} 
-        animationClass="float-gentle-delayed-2"
-      />
-      <FloatingPaperPlane 
-        className="bottom-40 right-16" 
-        size={22} 
-        animationClass="float-gentle"
-      />
-      <FloatingPaperPlane 
-        className="bottom-60 left-16" 
-        size={14} 
-        animationClass="float-gentle-delayed"
-      />
-      
-      {/* Drifting paper planes */}
-      <DriftingPaperPlane 
-        className="top-1/4" 
-        size={12} 
-        direction="right"
-      />
-      <DriftingPaperPlane 
-        className="top-1/2" 
-        size={14} 
-        direction="left"
-      />
-      <DriftingPaperPlane 
-        className="top-3/4" 
-        size={10} 
-        direction="right"
-      />
-      
-      {/* Main content */}
-      <div className="relative z-10">
-        {/* Hero section */}
-        <section className="text-center py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Thank You, Team ✈️
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              One last scroll through the people who made this journey unforgettable.
-            </p>
-          </div>
-        </section>
-
-        {/* Team members grid */}
-        <section className="py-16 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
-                <div
-                  key={member.name}
-                  className="animate-in fade-in slide-in-from-bottom-4"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <TeamMemberCard 
-                    name={member.name} 
-                    message={member.message}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Closing Message */}
-        <section className="py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-soft-white/80 to-gentle-lavender/40 backdrop-blur-sm border border-primary/20 rounded-2xl p-12 shadow-lg">
-              <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-8">
-                To the whole team, thank you for being the best part of my first job. I'm walking away with more than just skills. I'm carrying friendships, stories, and people I'll always root for.
+    <Scene3DBackground>
+      <div className="min-h-screen bg-gradient-to-br from-soft-white/80 via-blush-pink/20 to-sky-blue/30 relative overflow-hidden">
+        {/* Floating background paper planes */}
+        <FloatingPaperPlane 
+          className="top-20 left-10" 
+          size={20} 
+          animationClass="float-gentle"
+        />
+        <FloatingPaperPlane 
+          className="top-32 right-20" 
+          size={16} 
+          animationClass="float-gentle-delayed"
+        />
+        <FloatingPaperPlane 
+          className="top-60 left-1/4" 
+          size={18} 
+          animationClass="float-gentle-delayed-2"
+        />
+        <FloatingPaperPlane 
+          className="bottom-40 right-16" 
+          size={22} 
+          animationClass="float-gentle"
+        />
+        <FloatingPaperPlane 
+          className="bottom-60 left-16" 
+          size={14} 
+          animationClass="float-gentle-delayed"
+        />
+        
+        {/* Drifting paper planes */}
+        <DriftingPaperPlane 
+          className="top-1/4" 
+          size={12} 
+          direction="right"
+        />
+        <DriftingPaperPlane 
+          className="top-1/2" 
+          size={14} 
+          direction="left"
+        />
+        <DriftingPaperPlane 
+          className="top-3/4" 
+          size={10} 
+          direction="right"
+        />
+        
+        {/* Main content */}
+        <div className="relative z-10">
+          {/* Hero section */}
+          <section className="text-center py-20 px-4">
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight animate-pulse">
+                Thank You, Team ✈️
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                One last scroll through the people who made this journey unforgettable.
               </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Group Photo Section */}
-        <section className="py-16 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative inline-block">
-              <div className="polaroid-float bg-white p-4 shadow-2xl rounded-lg transform rotate-2">
-                <img 
-                  src="/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png"
-                  alt="Team Group Photo"
-                  className="w-full max-w-2xl rounded-md"
-                />
-                <div className="text-center mt-4 font-handwriting text-lg text-gray-700">
-                  The amazing team that made it all worthwhile ✨
+          {/* Team members grid */}
+          <section className="py-16 px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {teamMembers.map((member, index) => (
+                  <div
+                    key={member.name}
+                    className="animate-in fade-in slide-in-from-bottom-4 transform hover:scale-105 transition-all duration-500"
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    <TeamMemberCard 
+                      name={member.name} 
+                      message={member.message}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Closing Message */}
+          <section className="py-20 px-4 text-center">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-soft-white/80 to-gentle-lavender/40 backdrop-blur-sm border border-primary/20 rounded-2xl p-12 shadow-lg hover:shadow-2xl transition-all duration-500">
+                <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-8">
+                  To the whole team, thank you for being the best part of my first job. I'm walking away with more than just skills. I'm carrying friendships, stories, and people I'll always root for.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Group Photo Section */}
+          <section className="py-16 px-4 text-center">
+            <div className="max-w-4xl mx-auto">
+              <div className="relative inline-block">
+                <div className="polaroid-float bg-white p-4 shadow-2xl rounded-lg transform rotate-2 hover:rotate-0 transition-all duration-700 cursor-pointer">
+                  <img 
+                    src="/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png"
+                    alt="Team Group Photo"
+                    className="w-full max-w-2xl rounded-md hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="text-center mt-4 font-handwriting text-lg text-gray-700">
+                    The amazing team that made it all worthwhile ✨
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Final Signature */}
-        <section className="py-20 px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 shadow-lg">
-              <p className="text-lg md:text-xl text-foreground italic opacity-80">
-                Ctrl + Alt + Leave<br />
-                One last sign-off, <span className="font-semibold text-primary">Yousuf</span> 💙
-              </p>
+          {/* Final Signature */}
+          <section className="py-20 px-4 text-center">
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500">
+                <p className="text-lg md:text-xl text-foreground italic opacity-80 hover:opacity-100 transition-opacity duration-300">
+                  Ctrl + Alt + Leave<br />
+                  One last sign-off, <span className="font-semibold text-primary">Yousuf</span> 💙
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
-    </div>
+    </Scene3DBackground>
   );
 };
 
