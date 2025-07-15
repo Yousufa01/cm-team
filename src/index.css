@@ -29,12 +29,13 @@ All colors MUST be HSL.
     --accent: 200 100% 88%;
     --accent-foreground: 220 20% 25%;
 
-    /* Farewell theme colors */
+    /* Dreamy pastel theme colors */
     --sky-blue: 210 100% 85%;
-    --soft-blue: 210 60% 90%;
-    --warm-white: 210 20% 98%;
-    --gentle-gray: 220 10% 70%;
+    --blush-pink: 330 100% 90%;
+    --soft-white: 210 20% 98%;
+    --gentle-lavender: 270 50% 95%;
     --paper-plane: 45 100% 95%;
+    --pastel-mint: 150 50% 90%;
     
     /* Paper plane animations */
     --float-distance: 20px;
@@ -185,5 +186,77 @@ All colors MUST be HSL.
       transform: translateX(-100px) translateY(-30px) rotate(-5deg);
       opacity: 0;
     }
+  }
+
+  /* Character-specific animations */
+  .giraffe-appear {
+    animation: giraffe-appear 2s ease-out forwards;
+  }
+
+  .motorbike-zip {
+    animation: motorbike-zip 2s ease-out forwards;
+  }
+
+  .trophy-sparkle {
+    animation: trophy-sparkle 2s ease-out forwards;
+  }
+
+  .nun-dance {
+    animation: nun-dance 2s ease-out forwards;
+  }
+
+  .lightbulb-burst {
+    animation: lightbulb-burst 2s ease-out forwards;
+  }
+
+  .basketball-bounce {
+    animation: basketball-bounce 2s ease-out forwards;
+  }
+
+  @keyframes giraffe-appear {
+    0% { transform: translateY(100px) scale(0); opacity: 0; }
+    50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  @keyframes motorbike-zip {
+    0% { transform: translateX(-100px) rotate(-15deg); opacity: 0; }
+    50% { transform: translateX(50px) rotate(0deg); opacity: 1; }
+    100% { transform: translateX(100px) rotate(15deg); opacity: 0; }
+  }
+
+  @keyframes trophy-sparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    100% { transform: scale(1) rotate(360deg); opacity: 1; }
+  }
+
+  @keyframes nun-dance {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-10px) rotate(-5deg); }
+    75% { transform: translateX(10px) rotate(5deg); }
+  }
+
+  @keyframes lightbulb-burst {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes basketball-bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-30px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+  }
+
+  .polaroid-float {
+    animation: polaroid-float 3s ease-in-out infinite;
+  }
+
+  @keyframes polaroid-float {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
   }
 }

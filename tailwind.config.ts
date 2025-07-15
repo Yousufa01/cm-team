@@ -52,12 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Farewell theme colors
+				// Dreamy pastel theme colors
 				'sky-blue': 'hsl(var(--sky-blue))',
-				'soft-blue': 'hsl(var(--soft-blue))',
-				'warm-white': 'hsl(var(--warm-white))',
-				'gentle-gray': 'hsl(var(--gentle-gray))',
+				'blush-pink': 'hsl(var(--blush-pink))',
+				'soft-white': 'hsl(var(--soft-white))',
+				'gentle-lavender': 'hsl(var(--gentle-lavender))',
 				'paper-plane': 'hsl(var(--paper-plane))',
+				'pastel-mint': 'hsl(var(--pastel-mint))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
