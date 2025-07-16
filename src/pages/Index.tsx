@@ -1,6 +1,7 @@
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { FloatingCommentSystem } from "@/components/FloatingCommentSystem";
+import { InlineCommentBox } from "@/components/InlineCommentBox";
 
 const teamMembers = [
   {
@@ -32,6 +33,12 @@ const teamMembers = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-soft-white via-blush-pink/20 to-sky-blue/30 relative overflow-hidden">
+      {/* Enhanced glassmorphism background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blush-pink/20 to-gentle-lavender/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-sky-blue/20 to-pastel-mint/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-gentle-lavender/15 to-blush-pink/15 rounded-full blur-2xl animate-pulse delay-2000"></div>
+      </div>
       {/* Floating background paper planes */}
       <FloatingPaperPlane 
         className="top-20 left-10" 
@@ -84,9 +91,12 @@ const Index = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
               Thank You, Team ✈️
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-12">
               One last scroll through the people who made this journey unforgettable.
             </p>
+            
+            {/* Inline Comment Box */}
+            <InlineCommentBox />
           </div>
         </section>
 
@@ -113,10 +123,13 @@ const Index = () => {
         {/* Closing Message */}
         <section className="py-20 px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-soft-white/80 to-gentle-lavender/40 backdrop-blur-sm border border-primary/20 rounded-2xl p-12 shadow-lg">
-              <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-8">
-                To the whole team, thank you for being the best part of my first job. I'm walking away with more than just skills. I'm carrying friendships, stories, and people I'll always root for.
-              </p>
+            <div className="relative backdrop-blur-md bg-gradient-to-br from-soft-white/60 via-gentle-lavender/30 to-blush-pink/20 border border-primary/30 rounded-3xl p-12 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-blue/10 to-pastel-mint/10 rounded-3xl blur-xl"></div>
+              <div className="relative">
+                <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-8">
+                  To the whole team, thank you for being the best part of my first job. I'm walking away with more than just skills. I'm carrying friendships, stories, and people I'll always root for.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -125,13 +138,13 @@ const Index = () => {
         <section className="py-16 px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <div className="relative inline-block">
-              <div className="polaroid-float bg-white p-4 shadow-2xl rounded-lg transform rotate-2">
+              <div className="polaroid-float bg-gradient-to-br from-soft-white to-gentle-lavender/20 backdrop-blur-sm p-6 shadow-2xl rounded-2xl transform rotate-2 border border-primary/20">
                 <img 
                   src="/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png"
                   alt="Team Group Photo"
-                  className="w-full max-w-2xl rounded-md"
+                  className="w-full max-w-2xl rounded-xl"
                 />
-                <div className="text-center mt-4 font-handwriting text-lg text-gray-700">
+                <div className="text-center mt-4 text-lg text-foreground font-medium">
                   The amazing team that made it all worthwhile ✨
                 </div>
               </div>
@@ -143,11 +156,14 @@ const Index = () => {
         {/* Final Signature */}
         <section className="py-20 px-4 text-center">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 shadow-lg">
-              <p className="text-lg md:text-xl text-foreground italic opacity-80">
-                Ctrl + Alt + Leave<br />
-                One last sign-off, <span className="font-semibold text-primary">Yousuf</span> 💙
-              </p>
+            <div className="relative backdrop-blur-md bg-gradient-to-br from-soft-white/50 via-gentle-lavender/20 to-sky-blue/20 border border-primary/30 rounded-3xl p-8 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-blush-pink/5 to-pastel-mint/10 rounded-3xl blur-xl"></div>
+              <div className="relative">
+                <p className="text-lg md:text-xl text-foreground italic opacity-90">
+                  Ctrl + Alt + Leave<br />
+                  One last sign-off, <span className="font-semibold text-primary">Yousuf</span> 💙
+                </p>
+              </div>
             </div>
           </div>
         </section>

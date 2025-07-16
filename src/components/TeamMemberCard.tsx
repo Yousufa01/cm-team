@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { PaperPlane } from "./PaperPlane";
 import { AnimatedCharacter } from "./AnimatedCharacter";
-import { Heart } from "lucide-react";
+import { PersonReplyBox } from "./PersonReplyBox";
+import { Heart, Mail } from "lucide-react";
 
 interface TeamMemberCardProps {
   name: string;
@@ -14,6 +16,7 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [showReplyBox, setShowReplyBox] = useState(false);
 
   const handleCardClick = () => {
     setIsOpen(true);
@@ -82,9 +85,24 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
                 ))}
               </div>
               
-              <div className="mt-8 flex justify-center">
+              <div className="mt-8 flex flex-col items-center gap-4">
                 <PaperPlane size={24} className="text-primary/50" />
+                
+                <Button
+                  onClick={() => setShowReplyBox(!showReplyBox)}
+                  className="bg-gradient-to-r from-primary/80 to-accent/80 hover:from-primary hover:to-accent text-primary-foreground rounded-2xl px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Leave a message
+                </Button>
               </div>
+
+              {showReplyBox && (
+                <PersonReplyBox 
+                  personName={name} 
+                  onClose={() => setShowReplyBox(false)} 
+                />
+              )}
             </div>
           )}
         </div>
