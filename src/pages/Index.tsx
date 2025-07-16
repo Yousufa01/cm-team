@@ -1,6 +1,6 @@
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
-import { CommentForm } from "@/components/CommentForm";
+import { FloatingCommentSystem } from "@/components/FloatingCommentSystem";
 
 const teamMembers = [
   {
@@ -139,20 +139,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Comment Form Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Leave Your Message
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Share your thoughts, feedback, or replies. Your message will be saved for us to read.
-              </p>
-            </div>
-            <CommentForm />
-          </div>
-        </section>
 
         {/* Final Signature */}
         <section className="py-20 px-4 text-center">
@@ -166,6 +152,9 @@ const Index = () => {
           </div>
         </section>
       </div>
+
+      {/* Floating Comment System */}
+      <FloatingCommentSystem />
     </div>
   );
 };
