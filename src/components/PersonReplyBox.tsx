@@ -13,7 +13,7 @@ interface PersonReplyBoxProps {
 
 export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => {
   const [name, setName] = useState("");
-  const [message, setMessage] = useState(`@${personName} `);
+  const [message, setMessage] = useState("Replying to Yousuf...");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const { toast } = useToast();
@@ -82,8 +82,8 @@ export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => 
 
   return (
     <div className="mt-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
-      <div className="relative backdrop-blur-md bg-gradient-to-r from-soft-white/50 via-gentle-lavender/20 to-pastel-mint/30 border border-primary/20 rounded-2xl p-4 shadow-xl">
-        <div className="absolute inset-0 bg-gradient-to-r from-sky-blue/5 to-pastel-mint/10 rounded-2xl blur-lg"></div>
+      <div className="relative liquid-glass liquid-glass-glow rounded-2xl p-4">
+        <div className="absolute inset-0 liquid-bg-3 rounded-2xl blur-lg opacity-20"></div>
         
         <div className="relative">
           <div className="flex items-center justify-between mb-4">

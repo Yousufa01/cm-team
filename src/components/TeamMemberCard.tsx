@@ -51,7 +51,7 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Card 
-          className={`cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm border border-primary/20 group ${getCardTheme()}`}
+          className={`cursor-pointer liquid-glass liquid-hover group ${getCardTheme()}`}
           onClick={handleCardClick}
         >
           <CardContent className="p-6 text-center relative overflow-hidden">
@@ -69,7 +69,7 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
         </Card>
       </DialogTrigger>
       
-      <DialogContent className="max-w-2xl mx-auto bg-gradient-to-br from-soft-white to-gentle-lavender/20 border border-primary/20 shadow-xl">
+      <DialogContent className="max-w-2xl mx-auto liquid-glass liquid-glass-glow">
         <div className="text-center p-6">
           {showAnimation && (
             <AnimatedCharacter name={name} onAnimationComplete={handleAnimationComplete} />

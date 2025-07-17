@@ -29,13 +29,22 @@ All colors MUST be HSL.
     --accent: 200 100% 88%;
     --accent-foreground: 220 20% 25%;
 
-    /* Dreamy pastel theme colors */
+    /* Enhanced Liquid Glass Palette */
     --sky-blue: 210 100% 85%;
     --blush-pink: 330 100% 90%;
     --soft-white: 210 20% 98%;
     --gentle-lavender: 270 50% 95%;
     --paper-plane: 45 100% 95%;
     --pastel-mint: 150 50% 90%;
+    
+    /* Liquid Glass Effects */
+    --glass-bg: 210 100% 98% / 0.1;
+    --glass-border: 200 100% 70% / 0.2;
+    --glass-shadow: 200 100% 50% / 0.1;
+    --glass-glow: 200 100% 70% / 0.3;
+    --liquid-gradient-1: linear-gradient(135deg, hsl(var(--blush-pink) / 0.3), hsl(var(--gentle-lavender) / 0.3));
+    --liquid-gradient-2: linear-gradient(45deg, hsl(var(--sky-blue) / 0.3), hsl(var(--pastel-mint) / 0.3));
+    --liquid-gradient-3: linear-gradient(225deg, hsl(var(--gentle-lavender) / 0.2), hsl(var(--blush-pink) / 0.2));
     
     /* Paper plane animations */
     --float-distance: 20px;
@@ -258,5 +267,90 @@ All colors MUST be HSL.
   @keyframes polaroid-float {
     0%, 100% { transform: translateY(0px) rotate(-2deg); }
     50% { transform: translateY(-10px) rotate(2deg); }
+  }
+
+  /* Liquid Glass Utilities */
+  .liquid-glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: 0 8px 32px hsl(var(--glass-shadow));
+  }
+
+  .liquid-glass-glow {
+    box-shadow: 0 0 30px hsl(var(--glass-glow)), 0 8px 32px hsl(var(--glass-shadow));
+  }
+
+  .liquid-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .liquid-hover:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 40px hsl(var(--glass-shadow)), 0 0 40px hsl(var(--glass-glow));
+  }
+
+  /* 3D Floating Shapes */
+  .floating-shape {
+    animation: float-3d 8s ease-in-out infinite;
+  }
+
+  .floating-shape-delayed {
+    animation: float-3d 8s ease-in-out infinite 2s;
+  }
+
+  .floating-shape-delayed-2 {
+    animation: float-3d 8s ease-in-out infinite 4s;
+  }
+
+  @keyframes float-3d {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) translateX(10px) rotate(5deg);
+    }
+    66% {
+      transform: translateY(10px) translateX(-10px) rotate(-3deg);
+    }
+  }
+
+  /* Scroll-triggered animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: scroll-reveal 0.8s ease-out forwards;
+  }
+
+  @keyframes scroll-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Liquid gradient animations */
+  .liquid-bg-1 {
+    background: var(--liquid-gradient-1);
+    animation: gradient-flow 8s ease-in-out infinite;
+  }
+
+  .liquid-bg-2 {
+    background: var(--liquid-gradient-2);
+    animation: gradient-flow 10s ease-in-out infinite reverse;
+  }
+
+  .liquid-bg-3 {
+    background: var(--liquid-gradient-3);
+    animation: gradient-flow 12s ease-in-out infinite;
+  }
+
+  @keyframes gradient-flow {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 }

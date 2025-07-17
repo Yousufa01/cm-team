@@ -1,7 +1,7 @@
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { FloatingCommentSystem } from "@/components/FloatingCommentSystem";
-import { InlineCommentBox } from "@/components/InlineCommentBox";
+
 
 const teamMembers = [
   {
@@ -32,12 +32,18 @@ const teamMembers = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-soft-white via-blush-pink/20 to-sky-blue/30 relative overflow-hidden">
-      {/* Enhanced glassmorphism background elements */}
+    <div className="min-h-screen relative overflow-hidden liquid-bg-1">
+      {/* 3D Liquid Glass Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blush-pink/20 to-gentle-lavender/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-sky-blue/20 to-pastel-mint/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-gentle-lavender/15 to-blush-pink/15 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        {/* Animated liquid blobs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 liquid-bg-2 rounded-full blur-3xl floating-shape opacity-30"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 liquid-bg-3 rounded-full blur-3xl floating-shape-delayed opacity-25"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 liquid-bg-1 rounded-full blur-2xl floating-shape-delayed-2 opacity-20"></div>
+        
+        {/* Additional floating 3D shapes */}
+        <div className="absolute top-10 right-10 w-32 h-32 liquid-glass rounded-3xl floating-shape rotate-45"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 liquid-glass rounded-full floating-shape-delayed"></div>
+        <div className="absolute top-1/3 right-1/3 w-16 h-40 liquid-glass rounded-2xl floating-shape-delayed-2 rotate-12"></div>
       </div>
       {/* Floating background paper planes */}
       <FloatingPaperPlane 
@@ -88,15 +94,15 @@ const Index = () => {
         {/* Hero section */}
         <section className="text-center py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Thank You, Team ✈️
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-12">
-              One last scroll through the people who made this journey unforgettable.
-            </p>
+            <div className="liquid-glass liquid-glass-glow rounded-3xl p-8 mb-8 liquid-hover">
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+                Thank You, Team! 💖
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                One last scroll through the people who made this journey unforgettable.
+              </p>
+            </div>
             
-            {/* Inline Comment Box */}
-            <InlineCommentBox />
           </div>
         </section>
 
@@ -121,10 +127,10 @@ const Index = () => {
         </section>
 
         {/* Closing Message */}
-        <section className="py-20 px-4 text-center">
+        <section className="py-20 px-4 text-center scroll-reveal">
           <div className="max-w-4xl mx-auto">
-            <div className="relative backdrop-blur-md bg-gradient-to-br from-soft-white/60 via-gentle-lavender/30 to-blush-pink/20 border border-primary/30 rounded-3xl p-12 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-sky-blue/10 to-pastel-mint/10 rounded-3xl blur-xl"></div>
+            <div className="relative liquid-glass liquid-glass-glow rounded-3xl p-12 liquid-hover">
+              <div className="absolute inset-0 liquid-bg-2 rounded-3xl blur-xl opacity-30"></div>
               <div className="relative">
                 <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-8">
                   To the whole team, thank you for being the best part of my first job. I'm walking away with more than just skills. I'm carrying friendships, stories, and people I'll always root for.
@@ -156,8 +162,8 @@ const Index = () => {
         {/* Final Signature */}
         <section className="py-20 px-4 text-center">
           <div className="max-w-2xl mx-auto">
-            <div className="relative backdrop-blur-md bg-gradient-to-br from-soft-white/50 via-gentle-lavender/20 to-sky-blue/20 border border-primary/30 rounded-3xl p-8 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-blush-pink/5 to-pastel-mint/10 rounded-3xl blur-xl"></div>
+            <div className="relative liquid-glass liquid-glass-glow rounded-3xl p-8 liquid-hover">
+              <div className="absolute inset-0 liquid-bg-1 rounded-3xl blur-xl opacity-20"></div>
               <div className="relative">
                 <p className="text-lg md:text-xl text-foreground italic opacity-90">
                   Ctrl + Alt + Leave<br />
