@@ -69,14 +69,14 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
         </Card>
       </DialogTrigger>
       
-      <DialogContent className="max-w-2xl mx-auto liquid-glass liquid-glass-glow max-h-[90vh] overflow-y-auto">
-        <div className="text-center p-6">
+      <DialogContent className="max-w-2xl mx-auto bg-background/95 backdrop-blur-xl border border-border/20 rounded-3xl shadow-2xl max-h-[85vh]">
+        <div className="text-center p-6 max-h-full overflow-hidden">
           {showAnimation && (
             <AnimatedCharacter name={name} onAnimationComplete={handleAnimationComplete} />
           )}
           
           {showMessage && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-h-full overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
               <h2 className="text-2xl font-bold text-foreground mb-6">{name}</h2>
               
               <div className="text-foreground leading-relaxed space-y-4 text-left max-w-lg mx-auto">
