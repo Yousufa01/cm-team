@@ -69,7 +69,7 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
         </Card>
       </DialogTrigger>
       
-      <DialogContent className="max-w-2xl mx-auto liquid-glass liquid-glass-glow">
+      <DialogContent className="max-w-2xl mx-auto liquid-glass liquid-glass-glow max-h-[90vh] overflow-y-auto">
         <div className="text-center p-6">
           {showAnimation && (
             <AnimatedCharacter name={name} onAnimationComplete={handleAnimationComplete} />

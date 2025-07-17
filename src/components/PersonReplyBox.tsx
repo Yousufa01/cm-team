@@ -13,7 +13,7 @@ interface PersonReplyBoxProps {
 
 export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => {
   const [name, setName] = useState("");
-  const [message, setMessage] = useState("Replying to Yousuf...");
+  const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const { toast } = useToast();
@@ -90,7 +90,7 @@ export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => 
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-foreground">
-                Replying to {personName}...
+                Replying to Yousuf...
               </span>
             </div>
             <Button
@@ -109,7 +109,7 @@ export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => 
               placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-soft-white/70 border-primary/20 rounded-xl text-sm placeholder:text-muted-foreground/70 focus:ring-2 focus:ring-primary/30"
+              className="bg-background/90 border-border text-foreground placeholder:text-muted-foreground rounded-xl text-sm focus:ring-2 focus:ring-primary/30"
               disabled={isSubmitting}
             />
             
@@ -117,7 +117,7 @@ export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => 
               placeholder="Your message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="min-h-[80px] bg-soft-white/70 border-primary/20 rounded-xl text-sm placeholder:text-muted-foreground/70 focus:ring-2 focus:ring-primary/30 resize-none"
+              className="min-h-[80px] bg-background/90 border-border text-foreground placeholder:text-muted-foreground rounded-xl text-sm focus:ring-2 focus:ring-primary/30 resize-none"
               disabled={isSubmitting}
             />
             

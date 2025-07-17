@@ -91,6 +91,24 @@ const Index = () => {
       
       {/* Main content */}
       <div className="relative z-10">
+        {/* Group Photo Section */}
+        <section className="py-16 px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <div className="relative inline-block mb-12">
+              <div className="polaroid-float bg-gradient-to-br from-soft-white to-gentle-lavender/20 backdrop-blur-sm p-6 shadow-2xl rounded-2xl transform rotate-2 border border-primary/20">
+                <img 
+                  src="/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png"
+                  alt="Team Group Photo"
+                  className="w-full max-w-2xl rounded-xl"
+                />
+                <div className="text-center mt-4 text-lg text-foreground font-medium">
+                  The amazing team that made it all worthwhile ✨
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Hero section */}
         <section className="text-center py-20 px-4">
           <div className="max-w-4xl mx-auto">
@@ -140,23 +158,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Group Photo Section */}
-        <section className="py-16 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative inline-block">
-              <div className="polaroid-float bg-gradient-to-br from-soft-white to-gentle-lavender/20 backdrop-blur-sm p-6 shadow-2xl rounded-2xl transform rotate-2 border border-primary/20">
-                <img 
-                  src="/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png"
-                  alt="Team Group Photo"
-                  className="w-full max-w-2xl rounded-xl"
-                />
-                <div className="text-center mt-4 text-lg text-foreground font-medium">
-                  The amazing team that made it all worthwhile ✨
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
 
         {/* Final Signature */}
