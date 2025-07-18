@@ -57,9 +57,12 @@ const Index = () => {
       <section className="relative h-screen overflow-hidden">
         {/* Parallax Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out"
+          className="absolute inset-0 transition-all duration-1000 ease-out"
           style={{
             backgroundImage: `url('/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png')`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center top',
+            backgroundRepeat: 'no-repeat',
             transform: `scale(1.1)`,
             filter: `blur(0px)`
           }}

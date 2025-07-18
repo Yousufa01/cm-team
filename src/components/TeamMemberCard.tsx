@@ -14,6 +14,7 @@ interface TeamMemberCardProps {
 export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showReplyBox, setShowReplyBox] = useState(false);
+  const [showSpecialAnimation, setShowSpecialAnimation] = useState(false);
   const { toast } = useToast();
 
   const handleExpandClick = () => {
@@ -44,34 +45,67 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
       case "Surbhi":
         return "bg-gradient-to-br from-blush-pink/30 to-sky-blue/30";
       default:
-        return "bg-card/80";
+        return "bg-gradient-to-br from-soft-white/50 to-gentle-lavender/30";
+    }
+  };
+
+  const getPersonalAnimation = () => {
+    switch (name) {
+      case "Vrindha":
+        return "🦒"; // Giraffe for the tall roast reference
+      case "Hardik":
+        return "🚴‍♂️"; // Bike for COD and go-kart reference
+      case "Jenna":
+        return "🏆"; // Trophy for manager/perfection reference
+      case "Deno":
+        return "🎨"; // Artist emoji for the mad artist reference
+      case "Harshitha":
+        return "❓"; // Question mark for all the questions reference
+      case "Surbhi":
+        return "🏀"; // Basketball for the sessions reference
+      default:
+        return "✨";
     }
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 card-float">
       <Card 
-        className={`cursor-pointer liquid-glass liquid-hover group transition-all duration-300 ${getCardTheme()} ${isExpanded ? 'scale-105 shadow-2xl' : ''}`}
+        className={`cursor-pointer liquid-glass liquid-hover group transition-all duration-300 balloon-effect ${getCardTheme()} ${isExpanded ? 'scale-105 shadow-2xl' : ''}`}
         onClick={handleExpandClick}
       >
         <CardContent className="p-6 text-center relative overflow-hidden">
+          {/* Animated character overlay */}
+          <div className="absolute top-2 left-2 text-2xl animate-bounce opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+            {getPersonalAnimation()}
+          </div>
+          
+          {/* Sparkle effects on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div className="absolute top-4 right-4 text-yellow-400 animate-pulse">✨</div>
+            <div className="absolute bottom-4 left-4 text-yellow-400 animate-pulse" style={{ animationDelay: '0.5s' }}>✨</div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-400 animate-pulse" style={{ animationDelay: '1s' }}>💫</div>
+          </div>
+          
           <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <PaperPlane size={16} />
           </div>
-          <div className="mb-3">
-            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3">
-              <Heart className="w-6 h-6 text-primary" />
+          
+          <div className="mb-3 relative">
+            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+              <Heart className="w-6 h-6 text-primary group-hover:text-red-500 transition-colors duration-300" />
             </div>
           </div>
-          <h3 className="text-lg font-semibold text-foreground mb-2">{name}</h3>
+          
+          <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:scale-105 transition-transform duration-300">{name}</h3>
           <p className="text-sm text-muted-foreground mb-3">
             {isExpanded ? "Click to collapse" : "Click to read your message"}
           </p>
           <div className="flex justify-center">
             {isExpanded ? (
-              <ChevronUp className="w-5 h-5 text-primary" />
+              <ChevronUp className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-primary" />
+              <ChevronDown className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
             )}
           </div>
         </CardContent>
@@ -95,11 +129,23 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowReplyBox(!showReplyBox);
+                    // Trigger special animation for Hardik's bike
+                    if (name === "Hardik" && !showReplyBox) {
+                      setShowSpecialAnimation(true);
+                      setTimeout(() => setShowSpecialAnimation(false), 2000);
+                    }
                   }}
-                  className="bg-gradient-to-r from-primary/80 to-accent/80 hover:from-primary hover:to-accent text-primary-foreground rounded-2xl px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  className="bg-gradient-to-r from-primary/80 to-accent/80 hover:from-primary hover:to-accent text-primary-foreground rounded-2xl px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm relative overflow-hidden"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   {showReplyBox ? "Cancel Reply" : "Reply to Yousuf"}
+                  
+                  {/* Special bike animation for Hardik */}
+                  {name === "Hardik" && showSpecialAnimation && (
+                    <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-xl animate-ping">
+                      🚴‍♂️
+                    </div>
+                  )}
                 </Button>
               </div>
             </CardContent>
