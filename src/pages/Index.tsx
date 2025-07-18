@@ -32,7 +32,7 @@ const teamMembers = [
 ];
 
 const Index = () => {
-  // Parallax scroll effect
+  // Parallax scroll effect and glass message animation
   React.useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
@@ -44,6 +44,16 @@ const Index = () => {
       if (heroBg) {
         heroBg.style.transform = `translateY(${rate}px) scale(${scale})`;
         heroBg.style.filter = `blur(${blur}px)`;
+      }
+
+      // Glass message animation
+      const glassMessage = document.getElementById('glass-message');
+      if (glassMessage) {
+        if (scrolled > 50) {
+          glassMessage.classList.add('visible');
+        } else {
+          glassMessage.classList.remove('visible');
+        }
       }
     };
 
@@ -80,8 +90,11 @@ const Index = () => {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <div className="liquid-glass liquid-glass-glow rounded-3xl p-8 mb-8 liquid-hover max-w-4xl">
+        <div className="relative z-10 flex flex-col items-center justify-end h-full text-center px-4 pb-32">
+          <div 
+            id="glass-message"
+            className="glass-message liquid-glass liquid-glass-glow rounded-3xl p-8 mb-8 liquid-hover max-w-4xl"
+          >
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
               Thank You, Team! 💖
             </h1>
