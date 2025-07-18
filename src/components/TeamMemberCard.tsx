@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PaperPlane } from "./PaperPlane";
-import { AnimatedCharacter } from "./AnimatedCharacter";
 import { PersonReplyBox } from "./PersonReplyBox";
-import { Heart, Mail } from "lucide-react";
+import { Heart, Mail, ChevronDown, ChevronUp } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface TeamMemberCardProps {
   name: string;
@@ -13,19 +12,21 @@ interface TeamMemberCardProps {
 }
 
 export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showAnimation, setShowAnimation] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [showReplyBox, setShowReplyBox] = useState(false);
+  const { toast } = useToast();
 
-  const handleCardClick = () => {
-    setIsOpen(true);
-    setShowAnimation(true);
-    setShowMessage(false);
+  const handleExpandClick = () => {
+    setIsExpanded(!isExpanded);
   };
 
-  const handleAnimationComplete = () => {
-    setShowMessage(true);
+  const handleReplySuccess = () => {
+    setShowReplyBox(false);
+    toast({
+      title: "🎉 Your message to Yousuf has been sent! 💌",
+      description: "Thank you for sharing your thoughts!",
+      duration: 3000,
+    });
   };
 
   const getCardTheme = () => {
@@ -48,65 +49,74 @@ export const TeamMemberCard = ({ name, message }: TeamMemberCardProps) => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Card 
-          className={`cursor-pointer liquid-glass liquid-hover group ${getCardTheme()}`}
-          onClick={handleCardClick}
-        >
-          <CardContent className="p-6 text-center relative overflow-hidden">
-            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <PaperPlane size={16} />
+    <div className="space-y-2">
+      <Card 
+        className={`cursor-pointer liquid-glass liquid-hover group transition-all duration-300 ${getCardTheme()} ${isExpanded ? 'scale-105 shadow-2xl' : ''}`}
+        onClick={handleExpandClick}
+      >
+        <CardContent className="p-6 text-center relative overflow-hidden">
+          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <PaperPlane size={16} />
+          </div>
+          <div className="mb-3">
+            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3">
+              <Heart className="w-6 h-6 text-primary" />
             </div>
-            <div className="mb-3">
-              <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3">
-                <Heart className="w-6 h-6 text-primary" />
-              </div>
-            </div>
-            <h3 className="text-lg font-semibold text-foreground mb-2">{name}</h3>
-            <p className="text-sm text-muted-foreground">Click to read your message</p>
-          </CardContent>
-        </Card>
-      </DialogTrigger>
-      
-      <DialogContent className="max-w-2xl mx-auto bg-background/95 backdrop-blur-xl border border-border/20 rounded-3xl shadow-2xl max-h-[85vh]">
-        <div className="text-center p-6 max-h-full overflow-hidden">
-          {showAnimation && (
-            <AnimatedCharacter name={name} onAnimationComplete={handleAnimationComplete} />
-          )}
-          
-          {showMessage && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-h-full overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
-              <h2 className="text-2xl font-bold text-foreground mb-6">{name}</h2>
-              
-              <div className="text-foreground leading-relaxed space-y-4 text-left max-w-lg mx-auto">
+          </div>
+          <h3 className="text-lg font-semibold text-foreground mb-2">{name}</h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            {isExpanded ? "Click to collapse" : "Click to read your message"}
+          </p>
+          <div className="flex justify-center">
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-primary" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-primary" />
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Expanded Message Content */}
+      {isExpanded && (
+        <div className="animate-in slide-in-from-top-2 duration-500 fade-in">
+          <Card className="liquid-glass liquid-glass-glow">
+            <CardContent className="p-6">
+              <div className="text-foreground leading-relaxed space-y-4 text-left">
                 {message.split('\n').map((line, index) => (
                   <p key={index} className="text-sm md:text-base">{line}</p>
                 ))}
               </div>
               
-              <div className="mt-8 flex flex-col items-center gap-4">
+              <div className="mt-6 flex flex-col items-center gap-4">
                 <PaperPlane size={24} className="text-primary/50" />
                 
                 <Button
-                  onClick={() => setShowReplyBox(!showReplyBox)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowReplyBox(!showReplyBox);
+                  }}
                   className="bg-gradient-to-r from-primary/80 to-accent/80 hover:from-primary hover:to-accent text-primary-foreground rounded-2xl px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
                 >
                   <Mail className="w-4 h-4 mr-2" />
-                  Leave a message
+                  {showReplyBox ? "Cancel Reply" : "Reply to Yousuf"}
                 </Button>
               </div>
-
-              {showReplyBox && (
-                <PersonReplyBox 
-                  personName={name} 
-                  onClose={() => setShowReplyBox(false)} 
-                />
-              )}
-            </div>
-          )}
+            </CardContent>
+          </Card>
         </div>
-      </DialogContent>
-    </Dialog>
+      )}
+
+      {/* Inline Reply Box */}
+      {showReplyBox && isExpanded && (
+        <div className="animate-in slide-in-from-bottom-2 duration-300 fade-in">
+          <PersonReplyBox 
+            personName="Yousuf" 
+            onClose={() => setShowReplyBox(false)}
+            onSuccess={handleReplySuccess}
+          />
+        </div>
+      )}
+    </div>
   );
 };

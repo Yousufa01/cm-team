@@ -9,9 +9,10 @@ import { Mail, Send, X } from "lucide-react";
 interface PersonReplyBoxProps {
   personName: string;
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
-export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => {
+export const PersonReplyBox = ({ personName, onClose, onSuccess }: PersonReplyBoxProps) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,8 +48,8 @@ export const PersonReplyBox = ({ personName, onClose }: PersonReplyBoxProps) => 
       setShowThankYou(true);
       setTimeout(() => {
         setShowThankYou(false);
-        onClose();
-      }, 3000);
+        onSuccess?.();
+      }, 2000);
     } catch (error) {
       console.error("Error submitting reply:", error);
       toast({

@@ -1,3 +1,4 @@
+import React from "react";
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { FloatingCommentSystem } from "@/components/FloatingCommentSystem";
@@ -31,105 +32,93 @@ const teamMembers = [
 ];
 
 const Index = () => {
+  // Parallax scroll effect
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const rate = scrolled * -0.5;
+      const blur = Math.min(scrolled / 10, 10);
+      const scale = 1.1 + (scrolled / 2000);
+      
+      const heroBg = document.getElementById('hero-bg');
+      if (heroBg) {
+        heroBg.style.transform = `translateY(${rate}px) scale(${scale})`;
+        heroBg.style.filter = `blur(${blur}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen relative overflow-hidden liquid-bg-1">
-      {/* 3D Liquid Glass Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Animated liquid blobs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 liquid-bg-2 rounded-full blur-3xl floating-shape opacity-30"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 liquid-bg-3 rounded-full blur-3xl floating-shape-delayed opacity-25"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 liquid-bg-1 rounded-full blur-2xl floating-shape-delayed-2 opacity-20"></div>
+    <div className="min-h-screen relative">
+      {/* Hero Section with Team Photo Background */}
+      <section className="relative h-screen overflow-hidden">
+        {/* Parallax Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out"
+          style={{
+            backgroundImage: `url('/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png')`,
+            transform: `scale(1.1)`,
+            filter: `blur(0px)`
+          }}
+          id="hero-bg"
+        />
         
-        {/* Additional floating 3D shapes */}
-        <div className="absolute top-10 right-10 w-32 h-32 liquid-glass rounded-3xl floating-shape rotate-45"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 liquid-glass rounded-full floating-shape-delayed"></div>
-        <div className="absolute top-1/3 right-1/3 w-16 h-40 liquid-glass rounded-2xl floating-shape-delayed-2 rotate-12"></div>
-      </div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background/90" />
+        
+        {/* 3D Liquid Glass Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 liquid-bg-2 rounded-full blur-3xl floating-shape opacity-20"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 liquid-bg-3 rounded-full blur-3xl floating-shape-delayed opacity-15"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 liquid-bg-1 rounded-full blur-2xl floating-shape-delayed-2 opacity-10"></div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+          <div className="liquid-glass liquid-glass-glow rounded-3xl p-8 mb-8 liquid-hover max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Thank You, Team! 💖
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              One last scroll through the people who made this journey unforgettable.
+            </p>
+          </div>
+          
+          {/* Scroll Hint */}
+          <div className="absolute bottom-8 animate-bounce">
+            <div className="text-4xl">↓</div>
+            <p className="text-sm text-muted-foreground mt-2">Scroll to explore</p>
+          </div>
+        </div>
+      </section>
+
       {/* Floating background paper planes */}
       <FloatingPaperPlane 
-        className="top-20 left-10" 
+        className="fixed top-20 left-10 z-5" 
         size={20} 
         animationClass="float-gentle"
       />
       <FloatingPaperPlane 
-        className="top-32 right-20" 
+        className="fixed top-32 right-20 z-5" 
         size={16} 
         animationClass="float-gentle-delayed"
       />
       <FloatingPaperPlane 
-        className="top-60 left-1/4" 
-        size={18} 
-        animationClass="float-gentle-delayed-2"
-      />
-      <FloatingPaperPlane 
-        className="bottom-40 right-16" 
+        className="fixed bottom-40 right-16 z-5" 
         size={22} 
         animationClass="float-gentle"
       />
-      <FloatingPaperPlane 
-        className="bottom-60 left-16" 
-        size={14} 
-        animationClass="float-gentle-delayed"
-      />
-      
-      {/* Drifting paper planes */}
-      <DriftingPaperPlane 
-        className="top-1/4" 
-        size={12} 
-        direction="right"
-      />
-      <DriftingPaperPlane 
-        className="top-1/2" 
-        size={14} 
-        direction="left"
-      />
-      <DriftingPaperPlane 
-        className="top-3/4" 
-        size={10} 
-        direction="right"
-      />
-      
-      {/* Main content */}
-      <div className="relative z-10">
-        {/* Group Photo Section */}
-        <section className="relative py-16 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative inline-block mb-12">
-              <div className="polaroid-float liquid-glass liquid-glass-glow p-6 shadow-2xl rounded-3xl transform rotate-1 border border-primary/10">
-                <img 
-                  src="/lovable-uploads/5c54394f-d9e3-4fd1-bf91-23f07fda1f30.png"
-                  alt="Team Group Photo"
-                  className="w-full max-w-2xl rounded-2xl"
-                />
-                <div className="text-center mt-4 text-lg text-foreground font-medium">
-                  The amazing team that made it all worthwhile ✨
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Seamless gradient transition */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background/80 blur-sm"></div>
-        </section>
 
-        {/* Hero section */}
-        <section className="text-center py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="liquid-glass liquid-glass-glow rounded-3xl p-8 mb-8 liquid-hover">
-              <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-                Thank You, Team! 💖
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                One last scroll through the people who made this journey unforgettable.
-              </p>
-            </div>
-            
-          </div>
-        </section>
+      {/* Main content */}
+      <div className="relative z-10 liquid-bg-1 min-h-screen">
 
         {/* Team members grid */}
-        <section className="py-16 px-4">
+        <section className="py-8 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {teamMembers.map((member, index) => (
                 <div
                   key={member.name}

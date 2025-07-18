@@ -375,4 +375,15 @@ All colors MUST be HSL.
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.3);
   }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Parallax container */
+  .parallax-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
 }
