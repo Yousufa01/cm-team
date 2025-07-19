@@ -2,6 +2,9 @@ import React from "react";
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { FloatingCommentSystem } from "@/components/FloatingCommentSystem";
+import Iridescence from "@/components/Iridescence";
+import SplashCursor from "@/components/SplashCursor";
+import TiltedCard from "@/components/TiltedCard";
 
 
 const teamMembers = [
@@ -63,6 +66,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
+      <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.1} speed={1.0} />
+      <SplashCursor />
       {/* Hero Section with Team Photo Background */}
       <section className="relative h-screen overflow-hidden">
         {/* Parallax Background Image */}
@@ -141,9 +146,23 @@ const Index = () => {
                   className="animate-in fade-in slide-in-from-bottom-4"
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  <TeamMemberCard 
-                    name={member.name} 
-                    message={member.message}
+                  <TiltedCard
+                    imageSrc="/placeholder.svg"
+                    altText={`${member.name} avatar`}
+                    captionText={`${member.name}: ${member.message}`}
+                    containerHeight="350px"
+                    containerWidth="300px"
+                    imageHeight="300px"
+                    imageWidth="300px"
+                    overlayContent={
+                      <div className="absolute inset-0 bg-black/30 rounded-2xl flex items-end p-4">
+                        <div className="text-white">
+                          <h3 className="font-bold text-lg">{member.name}</h3>
+                          <p className="text-sm opacity-90">{member.message}</p>
+                        </div>
+                      </div>
+                    }
+                    displayOverlayContent={true}
                   />
                 </div>
               ))}
