@@ -165,19 +165,17 @@ const Index = () => {
                   onClick={() => setSelectedMember(member)}
                 >
                   <TiltedCard
-                    imageSrc="/placeholder.svg"
-                    altText={`${member.name} avatar`}
+                    imageSrc=""
+                    altText={`${member.name} card`}
                     captionText={`Click to read ${member.name}'s message`}
-                    containerHeight="350px"
-                    containerWidth="300px"
-                    imageHeight="300px"
-                    imageWidth="300px"
+                    containerHeight="280px"
+                    containerWidth="250px"
+                    imageHeight="250px"
+                    imageWidth="250px"
                     overlayContent={
-                      <div className="absolute inset-0 bg-black/50 rounded-2xl flex items-center justify-center p-4">
-                        <div className="text-white text-center">
-                          <h3 className="font-bold text-xl mb-2">{member.name}</h3>
-                          <p className="text-sm opacity-90">Click to read message</p>
-                        </div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-accent/80 rounded-2xl flex flex-col items-center justify-center p-6 text-white text-center">
+                        <h3 className="font-bold text-2xl mb-3">{member.name}</h3>
+                        <p className="text-sm opacity-90">Click to read message</p>
                       </div>
                     }
                     displayOverlayContent={true}
@@ -228,7 +226,7 @@ const Index = () => {
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
-              Message from {selectedMember?.name}
+              Message for {selectedMember?.name}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-6">
