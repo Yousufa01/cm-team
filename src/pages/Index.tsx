@@ -165,7 +165,7 @@ const Index = () => {
                   onClick={() => setSelectedMember(member)}
                 >
                   <TiltedCard
-                    imageSrc=""
+                    imageSrc="/placeholder.svg"
                     altText={`${member.name} card`}
                     captionText={`Click to read ${member.name}'s message`}
                     containerHeight="280px"
@@ -173,12 +173,13 @@ const Index = () => {
                     imageHeight="250px"
                     imageWidth="250px"
                     overlayContent={
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-accent/80 rounded-2xl flex flex-col items-center justify-center p-6 text-white text-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/90 to-purple-600/90 rounded-2xl flex flex-col items-center justify-center p-6 text-white text-center backdrop-blur-sm">
                         <h3 className="font-bold text-2xl mb-3">{member.name}</h3>
                         <p className="text-sm opacity-90">Click to read message</p>
                       </div>
                     }
                     displayOverlayContent={true}
+                    showTooltip={false}
                   />
                 </div>
               ))}
