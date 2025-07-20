@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { FloatingPaperPlane, DriftingPaperPlane } from "@/components/PaperPlane";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { FloatingCommentSystem } from "@/components/FloatingCommentSystem";
 import Iridescence from "@/components/Iridescence";
 import SplashCursor from "@/components/SplashCursor";
 import TiltedCard from "@/components/TiltedCard";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { PersonReplyBox } from "@/components/PersonReplyBox";
+import { useToast } from "@/hooks/use-toast";
 
 
 const teamMembers = [
@@ -35,6 +39,19 @@ const teamMembers = [
 ];
 
 const Index = () => {
+  const [selectedMember, setSelectedMember] = useState<typeof teamMembers[0] | null>(null);
+  const [showReplyBox, setShowReplyBox] = useState(false);
+  const { toast } = useToast();
+
+  const handleReplySuccess = () => {
+    setShowReplyBox(false);
+    toast({
+      title: "🎉 Your message to Yousuf has been sent! 💌",
+      description: "Thank you for sharing your thoughts!",
+      duration: 3000,
+    });
+  };
+
   // Parallax scroll effect and glass message animation
   React.useEffect(() => {
     const handleScroll = () => {
@@ -143,22 +160,23 @@ const Index = () => {
               {teamMembers.map((member, index) => (
                 <div
                   key={member.name}
-                  className="animate-in fade-in slide-in-from-bottom-4"
+                  className="animate-in fade-in slide-in-from-bottom-4 cursor-pointer"
                   style={{ animationDelay: `${index * 150}ms` }}
+                  onClick={() => setSelectedMember(member)}
                 >
                   <TiltedCard
                     imageSrc="/placeholder.svg"
                     altText={`${member.name} avatar`}
-                    captionText={`${member.name}: ${member.message}`}
+                    captionText={`Click to read ${member.name}'s message`}
                     containerHeight="350px"
                     containerWidth="300px"
                     imageHeight="300px"
                     imageWidth="300px"
                     overlayContent={
-                      <div className="absolute inset-0 bg-black/30 rounded-2xl flex items-end p-4">
-                        <div className="text-white">
-                          <h3 className="font-bold text-lg">{member.name}</h3>
-                          <p className="text-sm opacity-90">{member.message}</p>
+                      <div className="absolute inset-0 bg-black/50 rounded-2xl flex items-center justify-center p-4">
+                        <div className="text-white text-center">
+                          <h3 className="font-bold text-xl mb-2">{member.name}</h3>
+                          <p className="text-sm opacity-90">Click to read message</p>
                         </div>
                       </div>
                     }
@@ -204,6 +222,43 @@ const Index = () => {
 
       {/* Floating Comment System */}
       <FloatingCommentSystem />
+
+      {/* Message Modal */}
+      <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center">
+              Message from {selectedMember?.name}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6">
+            <div className="text-foreground leading-relaxed space-y-4">
+              {selectedMember?.message.split('\n').map((line, index) => (
+                <p key={index} className="text-base">{line}</p>
+              ))}
+            </div>
+            
+            <div className="flex flex-col items-center gap-4 pt-4 border-t">
+              <Button
+                onClick={() => setShowReplyBox(!showReplyBox)}
+                className="bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-primary-foreground rounded-2xl px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                {showReplyBox ? "Cancel Reply" : "Reply to Yousuf"}
+              </Button>
+              
+              {showReplyBox && (
+                <div className="w-full animate-in slide-in-from-bottom-2 duration-300 fade-in">
+                  <PersonReplyBox 
+                    personName="Yousuf" 
+                    onClose={() => setShowReplyBox(false)}
+                    onSuccess={handleReplySuccess}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
